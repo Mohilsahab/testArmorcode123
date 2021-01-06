@@ -1,17 +1,13 @@
 package src;
 
-import com.snapdeal.mob.errorcodes.MOBRequestExceptionCodes;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.security.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class HttpUrlConnection {
@@ -22,6 +18,7 @@ public class HttpUrlConnection {
         OperatingParams operatingparams;
         Asset assets;
         Parent parent;
+        private String testing;
 
         public int getId() {
             return id;

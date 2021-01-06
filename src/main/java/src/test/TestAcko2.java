@@ -1,6 +1,5 @@
 package src.test;
 
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 
@@ -21,7 +20,7 @@ public class TestAcko2 {
 
     private static int getLongestSubstring(String input, int k) {
         //    input = “aabcccbbbb”
-        if (StringUtils.isNotBlank(input)) {
+        if (input == null) {
             return 0;
         }
         int count = 1;

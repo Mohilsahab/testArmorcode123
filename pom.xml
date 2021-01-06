@@ -20,11 +20,12 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.snapdeal.mob</groupId>
             <artifactId>SnapdealMOBClient</artifactId>
             <version>1.0.64-SNAPSHOT</version>
-        </dependency></dependencies>
+        </dependency>-->
+    </dependencies>
 
 
 </project>
