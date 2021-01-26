@@ -1,163 +1,66 @@
 package src;
 
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URL;
-import java.security.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 
 public class HttpUrlConnection {
-    class Device {
-        int id;
-        Timestamp timestamp;
-        String status;
-        OperatingParams operatingparams;
-        Asset assets;
-        Parent parent;
-        private String testing;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public Timestamp getTimestamp() {
-            return timestamp;
-        }
-
-        public void setTimestamp(Timestamp timestamp) {
-            this.timestamp = timestamp;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
-        }
-
-        public OperatingParams getOperatingparams() {
-            return operatingparams;
-        }
-
-        public void setOperatingparams(OperatingParams operatingparams) {
-            this.operatingparams = operatingparams;
-        }
-
-        public Asset getAssets() {
-            return assets;
-        }
-
-        public void setAssets(Asset assets) {
-            this.assets = assets;
-        }
-
-        public Parent getParent() {
-            return parent;
-        }
-
-        public void setParent(Parent parent) {
-            this.parent = parent;
-        }
+    public static void main(String[] args) {
+        String res = HttpUrlConnection.httpConnection();
+        System.out.println(res);
     }
 
-    class OperatingParams {
-        int rotorSpeed;
-        String slack;
-        String rootThreshold;
+    public static String httpConnection() {
+        String inputString = "{\n" +
+                "  repository(name: \"testing\", owner: \"Mohilsahab\") {\n" +
+                "    ref(qualifiedName:\"main\") {      \n" +
+                "      target {\n" +
+                "        ... on Commit {\n" +
+                "          blame(path:\"src/main/java/src/HttpUrlConnection.java\") {\n" +
+                "            ranges {\n" +
+                "              commit {\n" +
+                "                author {\n" +
+                "                  name\n" +
+                "                }\n" +
+                "              }\n" +
+                "              startingLine\n" +
+                "              endingLine\n" +
+                "            \tcommit {\n" +
+                "            \t  id\n" +
+                "            \t}\n" +
+                "            }\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
 
-        public int getRotorSpeed() {
-            return rotorSpeed;
-        }
-
-        public void setRotorSpeed(int rotorSpeed) {
-            this.rotorSpeed = rotorSpeed;
-        }
-
-        public String getSlack() {
-            return slack;
-        }
-
-        public void setSlack(String slack) {
-            this.slack = slack;
-        }
-
-        public String getRootThreshold() {
-            return rootThreshold;
-        }
-
-        public void setRootThreshold(String rootThreshold) {
-            this.rootThreshold = rootThreshold;
-        }
-    }
-
-    class Asset {
-        int id;
-        String alias;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getAlias() {
-            return alias;
-        }
-
-        public void setAlias(String alias) {
-            this.alias = alias;
-        }
-    }
-
-    class Parent {
-        int id;
-        String alias;
-
-        @Override
-        public String toString() {
-            return "Parent{" +
-                    "id=" + id +
-                    ", alias='" + alias + '\'' +
-                    '}';
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getAlias() {
-            return alias;
-        }
-
-        public void setAlias(String alias) {
-            this.alias = alias;
-        }
-    }
-
-    public static int httpConnection(String statusQuery, int parentId) {
         StringBuilder result = new StringBuilder();
         try {
-            String link = "";
+            String link = "https://api.github.com/graphql";
             URL url = new URL(link);
             HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
-            connection.setRequestMethod("GET");
-            InputStream connectionIn = connection.getInputStream();
+            connection.setRequestMethod("POST");
+            String token = "b028cba72928e1abab632c6940fadaa43db709c5";
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept-Charset", "UTF-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            String query = "query{repository(name:\"testing\",owner:\"Mohilsahab\"){ref(qualifiedName:\"main\"){target{...onCommit{blame(path:\"src/main/java/src/HttpUrlConnection.java\"){ranges{commit{author{name}}startingLineendingLinecommit{id}}}}}}}}";
+            String json = "{\"query\" : \"${body}\"}";
+            json = json.replace("${body}", query);
+            System.out.println(json);
+            try(OutputStream os = connection.getOutputStream()) {
+                os.write(json.getBytes(StandardCharsets.UTF_8));
+            }
 
+            InputStream connectionIn = connection.getInputStream();
             BufferedReader buffer = new BufferedReader(new InputStreamReader(connectionIn));
             String inputLine;
             while ((inputLine = buffer.readLine()) != null) {
@@ -167,9 +70,6 @@ public class HttpUrlConnection {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-
-
-        List<Device> deviceList = new ArrayList<>();
-        return 0;
+        return result.toString();
     }
 }
