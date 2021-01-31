@@ -15,7 +15,7 @@ public class LinkedListReverse {
             return null;
         }
 //       2->3->4->5
-//        k = 5, 5->4->3->2
+//       k = 5, 5->4->3->2
 
         Node current = root;
         Node prev = null;

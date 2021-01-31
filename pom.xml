@@ -20,11 +20,22 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
         <!--<dependency>
             <groupId>com.snapdeal.mob</groupId>
             <artifactId>SnapdealMOBClient</artifactId>
             <version>1.0.64-SNAPSHOT</version>
         </dependency>-->
+
     </dependencies>
 
 
