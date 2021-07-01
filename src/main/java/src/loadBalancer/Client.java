@@ -6,6 +6,7 @@ public class Client {
         int id = loadBalancer.executeTasks(50, 50);
         int id2 = loadBalancer.executeTasks(30, 40);
         int id3 = loadBalancer.executeTasks(30, 40);
-        int id4 = loadBalancer.executeTasks(30, 40);;
+        int id4 = loadBalancer.executeTasks(30, 40);
+        System.out.println("test");
     }
 }
