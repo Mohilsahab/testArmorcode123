@@ -11,7 +11,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class WebUtil {
+public class AzureWebUtil {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
