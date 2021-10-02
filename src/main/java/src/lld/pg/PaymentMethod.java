@@ -1,4 +1,4 @@
-package src.pg;
+package src.lld.pg;
 
 public interface PaymentMethod {
     void wallet();

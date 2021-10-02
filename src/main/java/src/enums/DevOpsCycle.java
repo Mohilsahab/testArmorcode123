@@ -1,4 +1,4 @@
-package src;
+package src.enums;
 
 public enum DevOpsCycle {
     PLAN("Plan"),

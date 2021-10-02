@@ -1,4 +1,4 @@
-package src;
+package src.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Test1 {
+public class Test12 {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) {

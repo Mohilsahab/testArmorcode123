@@ -3,7 +3,7 @@ package src.test;
 
 import java.util.Arrays;
 
-public class TestAcko2 {
+public class Test11 {
 //    Given the string, if you are allowed to replace no more than k letters with any letter.
 //    Find the length of the longest substring having the same letters after replacement.
 //    string = “aabcccbbbb”

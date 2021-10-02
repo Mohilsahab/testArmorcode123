@@ -1,4 +1,4 @@
-package src.pg;
+package src.lld.pg;
 
 public class PayU implements PGs, PaymentMethod {
     @Override
