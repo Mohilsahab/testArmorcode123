@@ -1,4 +1,4 @@
-package src.leetcode;
+package src.leetcode.strings;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
