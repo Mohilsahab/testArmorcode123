@@ -19,6 +19,25 @@ public class GenerateParentheses {
             result.add(str.toString());
             return;
         }
+
+        if (leftBrackets > 0) {
+            str.append("(");
+            generateParenthesis(result, str, leftBrackets-1, rightBrackets);
+            str.deleteCharAt(str.length() - 1);
+        }
+
+        if (leftBrackets < rightBrackets) {
+            str.append(")");
+            generateParenthesis(result, str, leftBrackets, rightBrackets-1);
+            str.deleteCharAt(str.length() - 1);
+        }
+    }
+
+    /*private void generateParenthesis(List<String> result, StringBuilder str, int leftBrackets, int rightBrackets) {
+        if (rightBrackets == 0) {
+            result.add(str.toString());
+            return;
+        }
         if (leftBrackets == 0) {
             str.append(")");
             generateParenthesis(result, str, leftBrackets, rightBrackets-1);
@@ -36,5 +55,5 @@ public class GenerateParentheses {
             str.deleteCharAt(str.length() - 1);
 
         }
-    }
+    }*/
 }
